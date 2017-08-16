@@ -1,0 +1,9 @@
+## Question 1
+
+	Given two strings `s` and `t`, determine whether some anagram of `t` is a substring of `s`. For example: if `s = "udacity"` and `t = "ad"`, then the function returns `True`. Your function definition should look like: `question1(s, t)` and return a boolean `True` or `False`.
+
+	Solution Details:
+
+		My Solution uses a list datastructure, since the input data is 2 dimenstional and not related. First I put all the permutaions of t in a list, then I loop through the list until I find a match.
+
+		Runtime => O(n^2 + 1) 
