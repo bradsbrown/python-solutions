@@ -4,6 +4,18 @@
 
 	Solution Details:
 
-		My Solution uses a list datastructure, since the input data is 2 dimenstional and not related. First I put all the permutaions of t in a list, then I loop through the list until I find a match.
+		My Solution uses a list datastructure, since the input data is 2 dimenstional and not related. First I put all the permutaions of t in a list, then I loop through the list until I find a match. This is the brute force, or naive approach.
 
-		Runtime => O(n^2 + 1) 
+		Runtime => O(n^2 + 1)
+
+## Question 2
+
+	Given a string a, find the longest palindromic substring contained in a. Your function definition should look like question2(a), and return a string.
+
+	Solution Details:
+
+		My solutions runs 2 loops checking each string combination for the longest palindrome, and updates the stored palindrome if a longer one is found. This is the brute force, or naive approach.
+
+		Runtime => 0(n^3)
+
+## Question 3
