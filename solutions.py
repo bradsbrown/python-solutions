@@ -56,8 +56,10 @@
 # # Should return False
 
 def question3(adjDict):
+	print 'DICT LENGTH: ', len(adjDict)
 	edgeList = []
 	seen = []
+	count = 0
 
 	for vertex in adjDict.iterkeys():
 		print 'VERTEX ', vertex
@@ -81,6 +83,7 @@ def question3(adjDict):
 				print 'pin ', pin
 				print 'ADDDDD ', add
 				print 'is it in? ', adjDict[pin]
+				print 'COUNT: ', count
 
 				if add in adjDict[pin]:
 					print 'add is already in, skipping... may be adding to edge list'
@@ -88,7 +91,7 @@ def question3(adjDict):
 						print 'not in edgelist, adding...'
 						edgeList.append(edge)
 
-				else:
+				elif count != (len(adjDict) - 1) and edgeList < 1:
 					print 'AFTER ADD VERTEX ', adjDict[pin]
 					print add, ' is not in the list!'
 					adjDict[pin].append(add)
@@ -109,6 +112,7 @@ def question3(adjDict):
 		edgeList = []
 		minEdge = ('', 0)
 		seen.append(vertex)
+		count += 1
 
 
 	print "Dict Done = "
