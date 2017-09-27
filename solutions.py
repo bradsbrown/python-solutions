@@ -55,6 +55,7 @@
 # print question2(3,3,'hey'), "\n"
 # # Should return False
 
+
 def question3(adjDict):
 	print 'DICT LENGTH: ', len(adjDict)
 	edgeList = []
@@ -64,12 +65,15 @@ def question3(adjDict):
 	for vertex in adjDict.iterkeys():
 		print 'VERTEX ', vertex
 
-		# set first edge as min and compare
-		minEdge = adjDict[vertex][0]
-		print 'Min Edge ', minEdge
+		# set impossibly high min edge to start
+		minEdge = ('PLACEHOLDER', 999999999999999999999)
 
 		for edge in adjDict[vertex]:
 			print 'EDGE ', edge
+
+			if edge[1] < minEdge[1] and edge[1] != minEdge[1]:
+				print 'adding min edge...'
+				minEdge = edge
 
 			if edge[0] in seen:
 				print 'backtrack ', edge[0]
@@ -91,14 +95,10 @@ def question3(adjDict):
 						print 'not in edgelist, adding...'
 						edgeList.append(edge)
 
-				elif count != (len(adjDict) - 1) and edgeList < 1:
+				else:
 					print 'AFTER ADD VERTEX ', adjDict[pin]
 					print add, ' is not in the list!'
 					adjDict[pin].append(add)
-
-			if edge[1] < minEdge[1] and edge[1] != minEdge[1]:
-				print 'adding min edge>'
-				minEdge = edge
 
 		if minEdge not in edgeList:
 			edgeList.append(minEdge)
@@ -124,7 +124,7 @@ a = {
 	'B': [('A', 3), ('E', 4), ('F', 6)],
 	'C': [('E', 5)],
 	'D': [('A', 4)],
-	'E': [('B', 4), ('C', 5), ('F', 5)],
+	'E': [('B', 4), ('F', 5), ('C', 5)],
 	'F': [('B', 6), ('E', 5)]
 }
 
