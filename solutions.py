@@ -71,18 +71,18 @@ def question3(adjDict):
 		for edge in adjDict[vertex]:
 			print 'EDGE ', edge
 
-			if edge[1] < minEdge[1] and edge[1] != minEdge[1]:
+			if edge[1] < minEdge[1]:
 				print 'adding min edge...'
 				minEdge = edge
 
-			if edge[0] in seen:
-				print 'backtrack ', edge[0]
-				add = list(edge)
-				add.pop(0)
-				add.insert(0, vertex)
+			if minEdge[0] in seen:
+				print 'backtrack ', minEdge[0]
+				add = list(minEdge)
+				add.pop(0) #(b, 4)
+				add.insert(0, vertex) #(a, 4)
 				add = tuple(add)
 
-				pin = seen.index(edge[0])
+				pin = seen.index(minEdge[0])
 				pin = seen[pin]
 				print 'pin ', pin
 				print 'ADDDDD ', add
@@ -91,9 +91,9 @@ def question3(adjDict):
 
 				if add in adjDict[pin]:
 					print 'add is already in, skipping... may be adding to edge list'
-					if edge not in edgeList:
+					if minEdge not in edgeList:
 						print 'not in edgelist, adding...'
-						edgeList.append(edge)
+						edgeList.append(minEdge)
 
 				else:
 					print 'AFTER ADD VERTEX ', adjDict[pin]
@@ -110,7 +110,7 @@ def question3(adjDict):
 		print "Vertex List = ", adjDict[vertex]
 
 		edgeList = []
-		minEdge = ('', 0)
+		minEdge = ('PLACEHOLDER', 999999999999999999999)
 		seen.append(vertex)
 		count += 1
 
