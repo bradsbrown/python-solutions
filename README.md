@@ -5,7 +5,7 @@
 
 	Each function is labeled per it's question (`def question1():`)
 
-	Each function is explained the the explanations.txt file
+	Each function is explained the the explanations.md file
 
 ## INSTALLATION
 	
@@ -13,6 +13,10 @@
 
 ## FILE MANIFEST
 
-	explanations.txt
-	README.MD
-	soultions.py
+	1_anagram.py
+	2_lps.py
+	3_mst.py
+	4_lca.py
+	5_linked_list.py
+	explanations.md
+	README.md
