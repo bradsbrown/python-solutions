@@ -43,18 +43,23 @@ def question3(adjDict):
     # cycle = False
     # NOTE: the above line commented out as it was not used
 
+    # NOTE: The below loop refactors the incoming dict into a list
+    # of two-way edges, then sorts by weight ascending
     for vert in adjDict:
         seen.append(vert)
         for edge in adjDict[vert]:
             if edge[0] not in seen:
-                edge = list(edge)
-                edge.insert(0, vert)
-                edge = tuple(edge)
-                edgeList.append(edge)
-
-    list.sort(edgeList, key=itemgetter(2))
+                edgeList.append((vert, edge[0], edge[1]))
+                # NOTE: the below is replaced by the above one-liner
+                # edge = list(edge)
+                # edge.insert(0, vert)
+                # edge = tuple(edge)
+                # edgeList.append(edge)
+    edgeList.sort(key=itemgetter(2))
+    # list.sort(edgeList, key=itemgetter(2))
     print edgeList, '\n\n\n'
 
+    # NOTE: define the root as the first node in the "lightest" edge
     root = edgeList[0][0]
     print 'ROOT ', root
 
