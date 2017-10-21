@@ -67,6 +67,7 @@ def question3(adjDict):
         newDict[union[1]].append((union[0], union[2]))
         # print 'is cycle? ', union[1], union[0], root
         print 'DICT BEFORE CHECK', newDict
+        print 'ADJDICT ROOT: ', adjDict[root]
         for edge in adjDict[root]:
             print 'edge: ', edge
             # NOTE: removed "== True" from below line as it is redundant
