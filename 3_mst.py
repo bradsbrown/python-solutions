@@ -49,6 +49,16 @@ def adjdict_to_edge_list(adjdict):
     return edge_list
 
 
+def add_edge(edge_dict, edge1, edge2, weight):
+    edge_dict[edge1].append((edge2, weight))
+    edge_dict[edge2].append((edge1, weight))
+
+
+def remove_edge(edge_dict, edge1, edge2, weight):
+    edge_dict[edge1].remove((edge2, weight))
+    edge_dict[edge2].remove((edge1, weight))
+
+
 def question3(adjDict):
     newDict = {key: list([]) for key in adjDict.keys()}
     root = None
@@ -60,11 +70,10 @@ def question3(adjDict):
     root = edgeList[0][0]
     print 'ROOT ', root
 
-    for union in edgeList:
+    for edge1, edge2, weight in edgeList:
         print 'working on edge: ', union
-    # if both vertexes not in mst
-        newDict[union[0]].append((union[1], union[2]))
-        newDict[union[1]].append((union[0], union[2]))
+        # if both vertexes not in mst
+        add_edge(newDict, edge1, edge2, weight)
         # print 'is cycle? ', union[1], union[0], root
         print 'DICT BEFORE CHECK', newDict
         print 'ADJDICT ROOT: ', adjDict[root]
@@ -72,8 +81,7 @@ def question3(adjDict):
             print 'edge: ', edge
             # NOTE: removed "== True" from below line as it is redundant
             if isCycle(edge[0], root, adjDict, root):
-                newDict[union[0]].remove((union[1], union[2]))
-                newDict[union[1]].remove((union[0], union[2]))
+                remove_edge(newDict, edge1, edge2, weight)
 
         print 'AFTER CHECK ', newDict
     print 'FINAL CHECK', startCycle(edge[0], root, newDict, root)
