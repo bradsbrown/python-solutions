@@ -1,3 +1,8 @@
+'''
+Given a string a, find the longest palindromic substring contained in a. Your function definition should look like question2(a), and return a string.
+'''
+
+
 
 # question 2
 def isPalindrome(s):
@@ -12,7 +17,6 @@ def question2(s):
 		for count, item in enumerate(s):
 			for index, item in enumerate(s):
 				c = s[count:index + 1]
-
 				if isPalindrome(c) and len(c) > len(l):
 					l = c
 

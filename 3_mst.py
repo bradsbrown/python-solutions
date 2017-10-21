@@ -14,42 +14,55 @@ def isCycle(parent, previous, newDict, root):
 	print 'parent: ', parent
 	for edge in newDict[parent]:
 		if edge[0] == root and edge[0] != previous:
+			print 'there is a cycle'
 			return True
 		if edge[0] != previous:
 			print 'recursion', edge[0], parent
 			return isCycle(edge[0], parent, newDict, root)
-	return "no cycle here"
+	print "no cycle here"
+	return False
 
 def startCycle(parent, previous, newDict, root):
 	for edge in newDict[root]:
 		print 'edge: ', edge
-		print isCycle(edge[0], root, a, root)
+		return isCycle(edge[0], root, newDict, root)
 
 def question3(adjDict):
 	newDict = {key: list([]) for key in adjDict.keys()}
 	root = None
 	edgeList = []
+	seen = []
+	cycle = False
 
 	for vert in adjDict:
+		seen.append(vert)
 		for edge in adjDict[vert]:
-			edge = list(edge)
-			edge.insert(0, vert)
-			edge = tuple(edge)
-			edgeList.append(edge)
+			if edge[0] not in seen:
+				edge = list(edge)
+				edge.insert(0, vert)
+				edge = tuple(edge)
+				edgeList.append(edge)
 
 	list.sort(edgeList, key = itemgetter(2))
-	print edgeList, '\n\n'
+	print edgeList, '\n\n\n'
+
 	root = edgeList[0][0]
 	print 'ROOT ', root
 	
 	for union in edgeList:
+		print 'working on edge: ', union
+        # if both vertexes not in mst
 		newDict[union[0]].append((union[1], union[2]))
+		newDict[union[1]].append((union[0], union[2]))
 		# print 'is cycle? ', union[1], union[0], root
-		print 'newDict ', newDict
-		for edge in newDict[root]:
-			if isCycle(edge[0], root, newDict, root) == True:
-				newDict[union[0]].pop()
-		print 'after check ', newDict
+		print 'DICT BEFORE CHECK', newDict
+		for edge in adjDict[root]:
+			print 'edge: ', edge
+			if isCycle(edge[0], root, adjDict, root) == True:
+				newDict[union[0]].remove((union[1], union[2]))
+				newDict[union[1]].remove((union[0], union[2]))
+
+		print 'AFTER CHECK ', newDict
 	print 'FINAL CHECK', startCycle(edge[0], root, newDict, root)
 	return newDict
 

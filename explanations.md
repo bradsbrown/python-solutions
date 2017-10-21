@@ -1,5 +1,6 @@
 # Python Technical Interview Quesions/Solutions
 
+* Many suggestions have been taken from http://www.geeksforgeeks.org/ and one on one apts. with Brad Brown
 
 ## Question 1
 
@@ -7,9 +8,10 @@
 
 	Solution Details:
 
-		My Solution uses a list datastructure, since the input data is 2 dimenstional and not related. First I put all the permutaions of t in a list, then I loop through the list until I find a match. This is the brute force, or naive approach.
+		My Solution checks for all occurances of each letter t in string s,
+        then makes sure the number of occurances match. if they do, it's an anagram.
 
-		Runtime => O(n^2 + 1)
+		Runtime => O(len(s))
 
 
 ## Question 2
