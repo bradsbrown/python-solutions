@@ -71,15 +71,12 @@ def question3(adjDict):
     print 'ROOT ', root
 
     for edge1, edge2, weight in edgeList:
-        print 'working on edge: ', union
-        # if both vertexes not in mst
+        print 'working on edge: ', (edge1, edge2, weight)
         add_edge(newDict, edge1, edge2, weight)
-        # print 'is cycle? ', union[1], union[0], root
         print 'DICT BEFORE CHECK', newDict
         print 'ADJDICT ROOT: ', adjDict[root]
         for edge in adjDict[root]:
             print 'edge: ', edge
-            # NOTE: removed "== True" from below line as it is redundant
             if isCycle(edge[0], root, adjDict, root):
                 remove_edge(newDict, edge1, edge2, weight)
 
